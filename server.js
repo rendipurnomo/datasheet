@@ -10,8 +10,8 @@ const app = express();
 
 app.use(cors(
   {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: process.env.CLIENT_URL,
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true
   }
 ));
@@ -22,6 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 connectToGoogleSheet();
 app.use(userRoute);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on port " + process.env.PORT);
 });
